@@ -227,7 +227,7 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 11: 
  Stop
 # Program:
----
+```
 #include <stdio.h>
 float celtof();
 float ftocel();
@@ -256,8 +256,7 @@ float ftocel()
     celsius = (f - 32) * 5 / 9;
     return celsius;
 }
----
-
+```
 # Output:
 <img width="550" height="244" alt="image" src="https://github.com/user-attachments/assets/753aabf8-5e89-40dd-a6c9-1090d037d429" />
 
