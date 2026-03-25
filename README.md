@@ -41,7 +41,58 @@
 ### Step 14: 
   Stop
 # Program:
+~~~
+#include <stdio.h>
+
+void validateDate()
+{
+    int dd, mm, yy;
+    printf("Enter date (DD/MM/YYYY): ");
+    scanf("%d/%d/%d", &dd, &mm, &yy);
+
+    if(yy < 1900 || yy > 9999)
+    {
+        printf("Year is not valid");
+        return;
+    }
+
+    if(mm < 1 || mm > 12)
+    {
+        printf("Month is not valid");
+        return;
+    }
+
+    if((mm == 1) || (mm == 3) || (mm == 5) || (mm == 7) || (mm == 8) || (mm == 10) || (mm == 12))
+    {
+        if(dd >= 1 && dd <= 31)
+            printf("Date is valid.");
+        else
+            printf("Date is invalid.");
+    }
+    else if((mm == 4) || (mm == 6) || (mm == 9) || (mm == 11))
+    {
+        if(dd >= 1 && dd <= 30)
+            printf("Date is valid.");
+        else
+            printf("Date is invalid.");
+    }
+    else if(mm == 2)
+    {
+        if((dd >= 1 && dd <= 28) || (dd == 29 && (yy % 400 == 0 || (yy % 4 == 0 && yy % 100 != 0))))
+            printf("Date is valid.");
+        else
+            printf("Date is invalid.");
+    }
+}
+
+int main()
+{
+    validateDate();
+    return 0;
+}
+~~~
 # Output:
+<img width="411" height="138" alt="517842693-08faf00b-536a-48bb-8c41-a69f0faa4c32" src="https://github.com/user-attachments/assets/27af77a1-62aa-48a7-902d-d97b057dd6e9" />
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -89,7 +140,44 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 13: 
   Stop
 # Program:
+~~~
+#include <stdio.h>
+
+int max(int a, int b)
+{
+    if(a > b)
+        return a;
+    else
+        return b;
+}
+
+int min(int a, int b)
+{
+    if(a > b)
+        return b;
+    else
+        return a;
+}
+
+int main()
+{
+    int num1, num2, maximum, minimum;
+
+    printf("Enter two numbers: ");
+    scanf("%d %d", &num1, &num2);
+
+    maximum = max(num1, num2);
+    minimum = min(num1, num2);
+
+    printf("Maximum value: %d", maximum);
+    printf("\nMinimum value: %d", minimum);
+
+    return 0;
+}
+~~~
 # Output:
+<img width="285" height="154" alt="517842902-c7503b57-0cba-4e11-9bd5-86b6a297fde9" src="https://github.com/user-attachments/assets/f16028c9-6b9a-4bc7-9429-f110ece593a0" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -137,7 +225,37 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 11: 
  Stop
 # Program:
+#include <stdio.h>
+float celtof();
+float ftocel();
+int main()
+{
+    float f, c;
+    f = celtof();
+    printf("Temperature in Fahrenheit = %.2f\n", f);
+    c = ftocel();
+    printf("Temperature in Celsius = %.2f\n", c);
+    return 0;
+}
+float celtof()
+{
+    float C, F;
+    printf("Enter the temperature in Celsius: ");
+    scanf("%f", &C);
+    F = (C * 9 / 5) + 32;
+    return F;
+}
+float ftocel()
+{
+    float f, celsius;
+    printf("Enter the temperature in Fahrenheit: ");
+    scanf("%f", &f);
+    celsius = (f - 32) * 5 / 9;
+    return celsius;
+}
 # Output:
+<img width="550" height="244" alt="image" src="https://github.com/user-attachments/assets/753aabf8-5e89-40dd-a6c9-1090d037d429" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -185,7 +303,46 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 7: 
   Stop
 # Program:
+~~~
+#include <stdio.h>
+
+float celtof();
+float ftocel();
+
+int main()
+{
+    float f, c;
+
+    f = celtof();
+    printf("Fahrenheit value: %.2f", f);
+
+    c = ftocel();
+    printf("Celsius value: %.2f", c);
+
+    return 0;
+}
+
+float celtof()
+{
+    float C, F;
+    printf("Enter the temperature in Celsius: ");
+    scanf("%f", &C);
+    F = (C * 9 / 5) + 32;
+    return F;
+}
+
+float ftocel()
+{
+    float f, celsius;
+    printf("\nEnter the temperature in Fahrenheit: ");
+    scanf("%f", &f);
+    celsius = (f - 32) * 5 / 9;
+    return celsius;
+}
+~~~
 # Output:
+<img width="489" height="177" alt="517843286-aff2987a-6a87-46d4-9b04-f1e1cd46cc17" src="https://github.com/user-attachments/assets/2d6b1fda-d1b9-47e1-b7e9-b6689b537355" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -220,7 +377,68 @@ To build a C program to convert a string as described above, using a user-define
 ### Step 6: 
  Stop
 # Program:
+~~~
+#include <stdio.h>
+
+#define R 4
+#define C 4
+
+void spiralPrint(int m, int n, int a[R][C])
+{
+    int k = 0, l = 0;
+    printf("\nSpiral Order:\n");
+
+    while(k < m && l < n)
+    {
+        for(int i = l; i < n; i++)
+            printf("%d ", a[k][i]);
+        k++;
+
+        for(int i = k; i < m; i++)
+            printf("%d ", a[i][n - 1]);
+        n--;
+
+        if(k < m)
+        {
+            for(int i = n - 1; i >= l; i--)
+                printf("%d ", a[m - 1][i]);
+            m--;
+        }
+
+        if(l < n)
+        {
+            for(int i = m - 1; i >= k; i--)
+                printf("%d ", a[i][l]);
+            l++;
+        }
+    }
+}
+
+int main()
+{
+    int a[R][C] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12},
+        {13, 14, 15, 16}
+    };
+
+    printf("Matrix:\n");
+    for(int i = 0; i < R; i++)
+    {
+        for(int j = 0; j < C; j++)
+            printf("%d ", a[i][j]);
+        printf("\n");
+    }
+
+    spiralPrint(R, C, a);
+
+    return 0;
+}
+~~~
 # Output:
+<img width="440" height="302" alt="517843535-a4c5be8b-e14f-4258-97fc-dfd691815c18" src="https://github.com/user-attachments/assets/8d2bc4f7-d37c-4948-a48c-c571573fee24" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
