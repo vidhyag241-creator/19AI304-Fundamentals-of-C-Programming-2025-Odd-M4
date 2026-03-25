@@ -91,8 +91,10 @@ int main()
     return 0;
 }
 ~~~
+
 # Output:
 <img width="411" height="138" alt="517842693-08faf00b-536a-48bb-8c41-a69f0faa4c32" src="https://github.com/user-attachments/assets/27af77a1-62aa-48a7-902d-d97b057dd6e9" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -225,6 +227,7 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 11: 
  Stop
 # Program:
+---
 #include <stdio.h>
 float celtof();
 float ftocel();
@@ -253,6 +256,8 @@ float ftocel()
     celsius = (f - 32) * 5 / 9;
     return celsius;
 }
+---
+
 # Output:
 <img width="550" height="244" alt="image" src="https://github.com/user-attachments/assets/753aabf8-5e89-40dd-a6c9-1090d037d429" />
 
