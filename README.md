@@ -4,7 +4,7 @@
 ## 8. Implementation of passing parameters.
 # Ex.No:16
   Implement a C program to read a date in the format DD/MM/YYYY and determine whether the entered date is valid. The program should check the correctness of the day, month, and year, including leap year calculations for February.
-# Date : 
+# Date : 25-03-2026
 # Aim:
  To implement a C program that validates a user-entered date using a function without parameters and without return value, ensuring the correctness of day, month, year, and leap year conditions.
 # Algorithm:
@@ -101,7 +101,7 @@ Thus, the program was implemented and executed successfully, and the required ou
 # IAPR-4- Module 4 - FoC
 # Ex.No:17
   Develop a C program to read two numbers from the user and determine the maximum and minimum values. Use user-defined functions with arguments and return values—one function to find the maximum (max()) and another to find the minimum (min()).
-# Date : 
+# Date : 25-03-2026
 # Aim:
  To develop a C program that uses functions with parameters and return values to compute and display the maximum and minimum of two user-entered numbers.
 # Algorithm:
@@ -186,7 +186,7 @@ Thus, the program was implemented and executed successfully, and the required ou
 # IAPR-4- Module 4 - FoC
 # Ex.No:18
   Develop a C program to convert temperatures between Celsius and Fahrenheit: Convert Celsius to Fahrenheit using a function that returns the converted value. Convert Fahrenheit to Celsius using another function that returns the converted value. Display the results in the main() function.
-# Date : 
+# Date : 25-03-2026
 # Aim:
  To develop a C program that converts temperatures between Celsius and Fahrenheit using functions with return values.
 # Algorithm:
@@ -264,7 +264,7 @@ Thus, the program was implemented and executed successfully, and the required ou
 # IAPR-4- Module 4 - FoC
 # Ex.No:19
   Build a C program to print the elements of a given 4×4 matrix in spiral order starting from the top-left element and moving clockwise,using a user-defined parameterized function without return spiralPrint().
-# Date : 
+# Date : 25-02-2026
 # Aim:
  To build a C program to display the elements of a 2D array in spiral form, traversing the outer elements first and then moving inward in a clockwise direction, using a user-defined parameterized function without return spiralPrint().
 # Algorithm:
@@ -303,45 +303,56 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 7: 
   Stop
 # Program:
-~~~
+```
 #include <stdio.h>
-
-float celtof();
-float ftocel();
 
 int main()
 {
-    float f, c;
+    int mat[10][10],r,c;
+    scanf("%d%d",&r,&c);
 
-    f = celtof();
-    printf("Fahrenheit value: %.2f", f);
-
-    c = ftocel();
-    printf("Celsius value: %.2f", c);
-
-    return 0;
+    printf("The Matrix is\n");
+    for(int i=0;i<r;i++)
+    {
+        for(int j=0;j<c;j++){
+        scanf("%d",&mat[i][j]);
+        printf("%d ", mat[i][j]);
+        }
+        printf("\n");
+    }
+    int top=0;
+    int bottom =r-1;
+    int left =0;
+    int right=c-1;
+   printf("Spiral Matrix : ");
+    while(top<=bottom && left <= right)
+    {
+    for(int i=left;i<=right;i++)
+    printf("%d ",mat[top][i]);
+    top++;
+    
+    for(int i=top;i<=bottom;i++)
+    printf("%d ",mat[i][right]);
+    right--;
+    if(top<=bottom)
+    {
+        for(int i=right;i>=left;i--)
+        printf("%d ",mat[bottom][i]);
+        bottom--;
+    }
+    if(left<=right)
+    {
+        for(int i=bottom;i>=top;i--)
+        printf("%d ",mat[i][left]);
+        left++;
+    }
+        
+    }
 }
-
-float celtof()
-{
-    float C, F;
-    printf("Enter the temperature in Celsius: ");
-    scanf("%f", &C);
-    F = (C * 9 / 5) + 32;
-    return F;
-}
-
-float ftocel()
-{
-    float f, celsius;
-    printf("\nEnter the temperature in Fahrenheit: ");
-    scanf("%f", &f);
-    celsius = (f - 32) * 5 / 9;
-    return celsius;
-}
-~~~
+```
 # Output:
-<img width="489" height="177" alt="517843286-aff2987a-6a87-46d4-9b04-f1e1cd46cc17" src="https://github.com/user-attachments/assets/2d6b1fda-d1b9-47e1-b7e9-b6689b537355" />
+<img width="1040" height="423" alt="image" src="https://github.com/user-attachments/assets/d7f82832-9b0a-4901-9c52-9ab975aa269a" />
+
 
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
@@ -377,67 +388,41 @@ To build a C program to convert a string as described above, using a user-define
 ### Step 6: 
  Stop
 # Program:
-~~~
+```
 #include <stdio.h>
-
-#define R 4
-#define C 4
-
-void spiralPrint(int m, int n, int a[R][C])
+#include <string.h>
+void convertFirstCLastC(char str[])
 {
-    int k = 0, l = 0;
-    printf("\nSpiral Order:\n");
-
-    while(k < m && l < n)
+    int i, len;
+    len = strlen(str);
+    if (str[0] >= 'a' && str[0] <= 'z')
+        str[0] = str[0] - 32;
+    for (i = 1; i < len - 1; i++)
     {
-        for(int i = l; i < n; i++)
-            printf("%d ", a[k][i]);
-        k++;
-
-        for(int i = k; i < m; i++)
-            printf("%d ", a[i][n - 1]);
-        n--;
-
-        if(k < m)
+        if (str[i] == ' ')
         {
-            for(int i = n - 1; i >= l; i--)
-                printf("%d ", a[m - 1][i]);
-            m--;
-        }
+            if (str[i - 1] >= 'a' && str[i - 1] <= 'z')
+                str[i - 1] = str[i - 1] - 32;
 
-        if(l < n)
-        {
-            for(int i = m - 1; i >= k; i--)
-                printf("%d ", a[i][l]);
-            l++;
+            if (str[i + 1] >= 'a' && str[i + 1] <= 'z')
+                str[i + 1] = str[i + 1] - 32;
         }
     }
+    if (str[len - 1] >= 'a' && str[len - 1] <= 'z')
+        str[len - 1] = str[len - 1] - 32;
 }
 
 int main()
 {
-    int a[R][C] = {
-        {1, 2, 3, 4},
-        {5, 6, 7, 8},
-        {9, 10, 11, 12},
-        {13, 14, 15, 16}
-    };
-
-    printf("Matrix:\n");
-    for(int i = 0; i < R; i++)
-    {
-        for(int j = 0; j < C; j++)
-            printf("%d ", a[i][j]);
-        printf("\n");
-    }
-
-    spiralPrint(R, C, a);
-
+    char str[100];
+    scanf("%[^\n]", str);
+    convertFirstCLastC(str);
+    printf("%s", str);
     return 0;
 }
-~~~
+```
 # Output:
-<img width="440" height="302" alt="517843535-a4c5be8b-e14f-4258-97fc-dfd691815c18" src="https://github.com/user-attachments/assets/8d2bc4f7-d37c-4948-a48c-c571573fee24" />
+<img width="496" height="136" alt="image" src="https://github.com/user-attachments/assets/45cf410c-f4f8-466e-9e0d-056bf20f8960" />
 
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
